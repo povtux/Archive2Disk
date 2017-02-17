@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="TabArchive2Disk" label="Archive2disk">
+        <group id="Arch" label="Archiver">
+          <button id="BtArchive" 
+                  onAction="OnMyButtonClick" 
+                  label="Archiver le(s) mail(s) sur disque" 
+                  size="large" 
+                  getImage="GetImage" />
+          <button id="BtMassArchive"
+                  onAction="OnBtMassArchiveClick"
+                  label="Archiver en masse"
+                  size="large"
+                  getImage="GetImage" />
+        </group>
+        <group id="ArchConf" label="Configurer">
+          <button id="BtConfig"
+                  onAction="OnBtConfigClick"
+                  label="Configuration"
+                  size="large"
+                  getImage="GetImage" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+  <contextMenus>
+    <contextMenu idMso="ContextMenuMailItem">
+      <button id="MyContextMenuMailItem"
+          label="Archiver le mail sur disque"
+          onAction="OnMyButtonClick"
+          getImage="GetImage"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuMultipleItems">
+      <button id="MyContextMenuMultipleItems"
+          label="Archiver les mails sur disque"
+          onAction="OnMyButtonClick"
+          getImage="GetImage"/>
+    </contextMenu>
+  </contextMenus>
+</customUI>
+

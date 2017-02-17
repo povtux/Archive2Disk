@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="TabArchive2Disk" label="Archive2disk">
+        <group id="Arch" label="Archive">
+          <button id="BtArchive" 
+                  onAction="OnMyButtonClick" 
+                  label="Archive items to disk" 
+                  size="large" 
+                  getImage="GetImage" />
+          <button id="BtMassArchive"
+                  onAction="OnBtMassArchiveClick"
+                  label="Archiver en masse"
+                  size="large"
+                  getImage="GetImage" />
+        </group>
+        <group id="ArchConf" label="Configurer">
+          <button id="BtConfig"
+                  onAction="OnBtConfigClick"
+                  label="Configuration"
+                  size="large"
+                  getImage="GetImage" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+  <contextMenus>
+    <contextMenu idMso="ContextMenuMailItem">
+      <button id="MyContextMenuMailItem"
+          label="Archive item to disk"
+          onAction="OnMyButtonClick"
+          getImage="GetImage"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuMultipleItems">
+      <button id="MyContextMenuMultipleItems"
+          label="Archive items to disk"
+          onAction="OnMyButtonClick"
+          getImage="GetImage"/>
+    </contextMenu>
+  </contextMenus>
+</customUI>
+
