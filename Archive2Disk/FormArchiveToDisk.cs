@@ -16,8 +16,10 @@ namespace Archive2Disk
         private string[] lines; // lignes du fichier de destinations précédentes
         private string filename; // path complet du fichier.
 
-        public FormArchiveToDisk(ThisAddIn addin) : base(addin)
+
+        public FormArchiveToDisk(ThisAddIn addin)
         {
+            activate(addin);
             InitializeComponent();
             updateLabelsWithLang(culture);
             addLastPathsToCombo();
@@ -37,6 +39,7 @@ namespace Archive2Disk
             this.bt_close.Text = loc.getString(info.TwoLetterISOLanguageName, this.bt_close.Text);
             this.label3.Text = loc.getString(info.TwoLetterISOLanguageName, this.label3.Text);
             this.bt_cancel.Text = loc.getString(info.TwoLetterISOLanguageName, this.bt_cancel.Text);
+            this.cb_explode_attachements.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_explode_attachements.Text);
         }
 
         private void addLastPathsToCombo()
@@ -157,6 +160,8 @@ namespace Archive2Disk
             }
 
             archiver = new Archiver(this.tb_destination.Text, this);
+            if (this.cb_explode_attachements.Checked)
+                archiver.enableExtractAttachments();
             Thread t = new Thread(archiver.archive);
             t.Start();
         }

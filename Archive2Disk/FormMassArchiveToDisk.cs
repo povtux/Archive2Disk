@@ -10,8 +10,9 @@ namespace Archive2Disk
     {
         private Archiver archiver;
 
-        public FormMassArchiveToDisk(ThisAddIn addin) : base(addin)
+        public FormMassArchiveToDisk(ThisAddIn addin)
         {
+            activate(addin);
             InitializeComponent();
             updateLabelsWithLang(culture);
             this.archiver = new Archiver("", this);

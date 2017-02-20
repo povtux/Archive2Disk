@@ -36,6 +36,9 @@ namespace Archive2Disk
             strings["PATH_TOO_LONG"] = new TranslatedString("en", "Path too long", true);
             strings["FILE_ALREADY_EXISTS"] = new TranslatedString("en", "File already exists", true);
             strings["ALREADY_CATEGORISED_AS_ARCHIVED"] = new TranslatedString("en", "Alread categorised as archived", true);
+            strings["CB_EXPLODE_ATTACHMENTS"] = new TranslatedString("en", "Explode attachments in a separate folder", true);
+            strings["TAB_FOLDERS"] = new TranslatedString("en", "Folders", true);
+            strings["TAB_PARAMS"] = new TranslatedString("en", "Options", true);
 
             // LANG: FR
             strings["FORM_ARCHIVE_TO_DISK_TITLE"].addOrUpdateTranslation("fr", "Archiver sur disque");
@@ -58,6 +61,9 @@ namespace Archive2Disk
             strings["PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Chemin de fichier trop long");
             strings["FILE_ALREADY_EXISTS"].addOrUpdateTranslation("fr", "Le fichier existe déjà");
             strings["ALREADY_CATEGORISED_AS_ARCHIVED"].addOrUpdateTranslation("fr", "Déjà catégorisé archivé");
+            strings["CB_EXPLODE_ATTACHMENTS"].addOrUpdateTranslation("fr", "Extraire les attachements dans un dossier séparé");
+            strings["TAB_FOLDERS"].addOrUpdateTranslation("fr", "Dossiers");
+            strings["TAB_PARAMS"].addOrUpdateTranslation("fr", "Options");
 
             // LANG: DE
             strings["FORM_ARCHIVE_TO_DISK_TITLE"].addOrUpdateTranslation("de", "Disk Archiver");

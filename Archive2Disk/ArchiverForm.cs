@@ -23,7 +23,8 @@ namespace Archive2Disk
         protected Dictionary<string, ListViewGroup> groups = new Dictionary<string, ListViewGroup>();
         public CultureInfo culture;
 
-        public ArchiverForm(ThisAddIn addin)
+
+        protected void activate(ThisAddIn addin)
         {
             updateItemDelegate = new updateItem(updateEtat);
             endArchiveDelegate = new endArchive(terminate);

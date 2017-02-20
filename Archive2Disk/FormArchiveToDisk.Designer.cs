@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.bt_cancel = new System.Windows.Forms.Button();
             this.tb_destination = new System.Windows.Forms.ComboBox();
+            this.cb_explode_attachements = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +81,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MinimumSize = new System.Drawing.Size(959, 366);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(959, 366);
+            this.listView1.Size = new System.Drawing.Size(959, 388);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -114,7 +115,7 @@
             // 
             this.bt_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_ok.Enabled = false;
-            this.bt_ok.Location = new System.Drawing.Point(881, 442);
+            this.bt_ok.Location = new System.Drawing.Point(881, 482);
             this.bt_ok.Margin = new System.Windows.Forms.Padding(4);
             this.bt_ok.Name = "bt_ok";
             this.bt_ok.Size = new System.Drawing.Size(100, 28);
@@ -126,7 +127,7 @@
             // bt_close
             // 
             this.bt_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_close.Location = new System.Drawing.Point(773, 442);
+            this.bt_close.Location = new System.Drawing.Point(773, 482);
             this.bt_close.Margin = new System.Windows.Forms.Padding(4);
             this.bt_close.Name = "bt_close";
             this.bt_close.Size = new System.Drawing.Size(100, 28);
@@ -139,7 +140,7 @@
             // 
             this.l_mailsInSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.l_mailsInSelection.AutoSize = true;
-            this.l_mailsInSelection.Location = new System.Drawing.Point(105, 448);
+            this.l_mailsInSelection.Location = new System.Drawing.Point(105, 488);
             this.l_mailsInSelection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.l_mailsInSelection.Name = "l_mailsInSelection";
             this.l_mailsInSelection.Size = new System.Drawing.Size(16, 17);
@@ -150,7 +151,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 447);
+            this.label3.Location = new System.Drawing.Point(21, 487);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 17);
@@ -161,7 +162,7 @@
             // 
             this.bt_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_cancel.Enabled = false;
-            this.bt_cancel.Location = new System.Drawing.Point(665, 442);
+            this.bt_cancel.Location = new System.Drawing.Point(665, 482);
             this.bt_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(100, 28);
@@ -184,11 +185,22 @@
             this.tb_destination.SelectedIndexChanged += new System.EventHandler(this.tb_destination_SelectedIndexChanged);
             this.tb_destination.TextChanged += new System.EventHandler(this.tb_destination_TextChanged);
             // 
+            // cb_explode_attachements
+            // 
+            this.cb_explode_attachements.AutoSize = true;
+            this.cb_explode_attachements.Location = new System.Drawing.Point(24, 463);
+            this.cb_explode_attachements.Name = "cb_explode_attachements";
+            this.cb_explode_attachements.Size = new System.Drawing.Size(232, 21);
+            this.cb_explode_attachements.TabIndex = 11;
+            this.cb_explode_attachements.Text = "CB_EXPLODE_ATTACHMENTS";
+            this.cb_explode_attachements.UseVisualStyleBackColor = true;
+            // 
             // FormArchiveToDisk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 478);
+            this.ClientSize = new System.Drawing.Size(1000, 518);
+            this.Controls.Add(this.cb_explode_attachements);
             this.Controls.Add(this.tb_destination);
             this.Controls.Add(this.bt_cancel);
             this.Controls.Add(this.label3);
@@ -222,5 +234,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button bt_cancel;
         private System.Windows.Forms.ComboBox tb_destination;
+        private System.Windows.Forms.CheckBox cb_explode_attachements;
     }
 }

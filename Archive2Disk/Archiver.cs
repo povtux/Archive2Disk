@@ -9,11 +9,17 @@ namespace Archive2Disk
         private string dir;
         private ArchiverForm parent;
         private bool shouldStop = false;
+        private bool extractAttachments = false;
 
         public Archiver(string dir, ArchiverForm parent)
         {
             this.dir = dir;
             this.parent = parent;
+        }
+
+        public void enableExtractAttachments()
+        {
+            this.extractAttachments = true;
         }
 
         public void archive()
@@ -52,6 +58,8 @@ namespace Archive2Disk
 
         public void massArchive()
         {
+            if (Config.getInstance().getOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) enableExtractAttachments();
+
             string msg;
             var customCat = Localisation.getInstance().getString(
                 parent.culture.TwoLetterISOLanguageName,
@@ -146,6 +154,14 @@ namespace Archive2Disk
             string archived = "erreur";
             string filename = Path.Combine(dir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject) + ".msg");
 
+            // si extraction dans dossier séparé, on redéfini le filename
+            string newdir = "";
+            if(extractAttachments)
+            {
+                newdir = Path.Combine(dir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject));
+                filename = Path.Combine(newdir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject) + ".msg");
+            }
+
             // si on fleurte avec les limites, on ne sauve pas
             if (filename.Length > 250) return Localisation.getInstance().getString(
                 parent.culture.TwoLetterISOLanguageName,
@@ -158,10 +174,25 @@ namespace Archive2Disk
                 "FILE_ALREADY_EXISTS"
                 );
 
+            // si extraction des attachements, on est OK sur longueur et not exists, on tente de créer le répertoire
+            if(extractAttachments)
+            {
+                Directory.CreateDirectory(newdir);
+            }
+
             // on tente de sauver
             try
             {
                 item.SaveAs(filename, Outlook.OlSaveAsType.olMSGUnicode);
+
+                // si extration des attachements, on extract
+                if(extractAttachments)
+                {
+                    foreach(Outlook.Attachment att in item.Attachments)
+                    {
+                        att.SaveAsFile(Path.Combine(newdir, att.FileName));
+                    }
+                }
                 archived = "Ok";
             }
             catch (Exception e)

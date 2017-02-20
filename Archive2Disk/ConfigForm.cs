@@ -18,6 +18,7 @@ namespace Archive2Disk
             updateLabelsWithLang(Thread.CurrentThread.CurrentUICulture);
             Outlook.Folder root = olApplication.Session.DefaultStore.GetRootFolder() as Outlook.Folder;
             EnumerateFolders(root, "└ ");
+            reloadOptions();
         }
 
         private void EnumerateFolders(Outlook.Folder folder, string prefix)
@@ -47,6 +48,11 @@ namespace Archive2Disk
             }
         }
 
+        private void reloadOptions()
+        {
+            if (Config.getInstance().getOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) cb_explode_attachments.Checked = true;
+        }
+
         private void bt_ok_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> newBinding = new Dictionary<string, string>();
@@ -56,6 +62,9 @@ namespace Archive2Disk
                     newBinding.Add(item.Name, item.SubItems[1].Text);
             }
             Config.getInstance().updateFoldersBinding(newBinding);
+
+            // traitement des options
+            saveOptions();
             this.Close();
         }
 
@@ -78,6 +87,17 @@ namespace Archive2Disk
             this.columnHeader1.Text = loc.getString(info.TwoLetterISOLanguageName, this.columnHeader1.Text);
             this.columnHeader2.Text = loc.getString(info.TwoLetterISOLanguageName, this.columnHeader2.Text);
             this.bt_ok.Text = loc.getString(info.TwoLetterISOLanguageName, this.bt_ok.Text);
+            this.cb_explode_attachments.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_explode_attachments.Text);
+            this.tabPage1.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage1.Text);
+            this.tabPage2.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage2.Text);
+        }
+
+        private void saveOptions()
+        {
+            if (cb_explode_attachments.Checked) Config.getInstance().addOrUpdateOption("EXPLODE_ATTACHMENTS", "TRUE");
+            else Config.getInstance().addOrUpdateOption("EXPLODE_ATTACHMENTS", "FALSE");
+
+            Config.getInstance().saveOptions();
         }
     }
 }
