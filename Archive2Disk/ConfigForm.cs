@@ -68,6 +68,7 @@ namespace Archive2Disk
         private void reloadOptions()
         {
             if (Config.getInstance().getOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) cb_explode_attachments.Checked = true;
+            if (Config.getInstance().getOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) cb_truncate.Checked = true;
         }
 
         private void bt_ok_Click(object sender, EventArgs e)
@@ -105,6 +106,7 @@ namespace Archive2Disk
             this.columnHeader2.Text = loc.getString(info.TwoLetterISOLanguageName, this.columnHeader2.Text);
             this.bt_ok.Text = loc.getString(info.TwoLetterISOLanguageName, this.bt_ok.Text);
             this.cb_explode_attachments.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_explode_attachments.Text);
+            this.cb_truncate.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_truncate.Text);
             this.tabPage1.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage1.Text);
             this.tabPage2.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage2.Text);
         }
@@ -113,6 +115,8 @@ namespace Archive2Disk
         {
             if (cb_explode_attachments.Checked) Config.getInstance().addOrUpdateOption("EXPLODE_ATTACHMENTS", "TRUE");
             else Config.getInstance().addOrUpdateOption("EXPLODE_ATTACHMENTS", "FALSE");
+            if (cb_truncate.Checked) Config.getInstance().addOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "TRUE");
+            else Config.getInstance().addOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "FALSE");
 
             Config.getInstance().saveOptions();
         }

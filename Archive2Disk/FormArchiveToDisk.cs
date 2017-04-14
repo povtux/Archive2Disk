@@ -179,6 +179,7 @@ namespace Archive2Disk
             archiver = new Archiver(this.tb_destination.Text, this);
             if (this.cb_explode_attachements.Checked)
                 archiver.enableExtractAttachments();
+            if (Config.getInstance().getOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) archiver.enableTruncatePathTooLong();
             Thread t = new Thread(archiver.archive);
             t.Start();
         }

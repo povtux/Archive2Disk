@@ -96,10 +96,21 @@ namespace Archive2Disk
             t.Start();
         }
 
+        public void OnBtInfoClick(Office.IRibbonControl control)
+        {
+            var formAbout = new AboutForm();
+            formAbout.ShowDialog();
+        }
+
         public void OnBtConfigClick(Office.IRibbonControl control)
         {
             var configForm = new ConfigForm(addin);
             configForm.ShowDialog();
+        }
+
+        public void OnBtHelpClick(Office.IRibbonControl control)
+        {
+            System.Diagnostics.Process.Start("https://github.com/povtux/Archive2Disk/raw/master/manuel%20Archive2Disk.pdf");
         }
 
         public void OnBtMassArchiveClick(Office.IRibbonControl control)
@@ -132,6 +143,18 @@ namespace Archive2Disk
                     {
                         Assembly myAssembly = Assembly.GetExecutingAssembly();
                         Stream myStream = myAssembly.GetManifestResourceStream("Archive2Disk.Config-Tools.png");
+                        return new Bitmap(myStream);
+                    }
+                case "BtInfo":
+                    {
+                        Assembly myAssembly = Assembly.GetExecutingAssembly();
+                        Stream myStream = myAssembly.GetManifestResourceStream("Archive2Disk.info.png");
+                        return new Bitmap(myStream);
+                    }
+                case "BtHelp":
+                    {
+                        Assembly myAssembly = Assembly.GetExecutingAssembly();
+                        Stream myStream = myAssembly.GetManifestResourceStream("Archive2Disk.help.png");
                         return new Bitmap(myStream);
                     }
             }

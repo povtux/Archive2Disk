@@ -27,6 +27,7 @@ namespace Archive2Disk
         private ArchiverForm parent;
         private bool shouldStop = false;
         private bool extractAttachments = false;
+        private bool truncatePathTooLong = false;
 
         public Archiver(string dir, ArchiverForm parent)
         {
@@ -37,6 +38,11 @@ namespace Archive2Disk
         public void enableExtractAttachments()
         {
             this.extractAttachments = true;
+        }
+
+        public void enableTruncatePathTooLong()
+        {
+            this.truncatePathTooLong = true;
         }
 
         public void archive()
@@ -76,6 +82,7 @@ namespace Archive2Disk
         public void massArchive()
         {
             if (Config.getInstance().getOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) enableExtractAttachments();
+            if (Config.getInstance().getOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) enableTruncatePathTooLong();
 
             string msg;
             var customCat = Localisation.getInstance().getString(
@@ -172,7 +179,7 @@ namespace Archive2Disk
             string filename = Path.Combine(dir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject) + ".msg");
 
             // si extraction dans dossier séparé, on redéfini le filename
-            string newdir = "";
+            string newdir = dir;
             if(extractAttachments)
             {
                 newdir = Path.Combine(dir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject));
@@ -180,10 +187,25 @@ namespace Archive2Disk
             }
 
             // si on fleurte avec les limites, on ne sauve pas
-            if (filename.Length > 250) return Localisation.getInstance().getString(
-                parent.culture.TwoLetterISOLanguageName,
-                "PATH_TOO_LONG"
-                );
+            if (newdir.Length > 230)
+            {
+                return Localisation.getInstance().getString(
+                    parent.culture.TwoLetterISOLanguageName,
+                    "PATH_TOO_LONG"
+                    );
+            }
+
+            // si on fleurte avec les limites, on ne sauve pas
+            if (filename.Length > 250)
+            {
+                if(truncatePathTooLong)
+                    filename = filename.Substring(0, 250) + ".msg";
+                else
+                    return Localisation.getInstance().getString(
+                                parent.culture.TwoLetterISOLanguageName,
+                                "FULL_PATH_TOO_LONG"
+                           );
+            }
 
             // si fichier déjà existant, on ne sauve pas
             if (File.Exists(filename)) return Localisation.getInstance().getString(

@@ -54,6 +54,7 @@ namespace Archive2Disk
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cb_truncate = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -71,7 +72,7 @@ namespace Archive2Disk
             this.lv_folders.FullRowSelect = true;
             this.lv_folders.GridLines = true;
             this.lv_folders.Location = new System.Drawing.Point(8, 18);
-            this.lv_folders.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lv_folders.Margin = new System.Windows.Forms.Padding(2);
             this.lv_folders.MultiSelect = false;
             this.lv_folders.Name = "lv_folders";
             this.lv_folders.Size = new System.Drawing.Size(701, 313);
@@ -102,8 +103,9 @@ namespace Archive2Disk
             // 
             // bt_ok
             // 
+            this.bt_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_ok.Location = new System.Drawing.Point(669, 379);
-            this.bt_ok.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bt_ok.Margin = new System.Windows.Forms.Padding(2);
             this.bt_ok.Name = "bt_ok";
             this.bt_ok.Size = new System.Drawing.Size(56, 19);
             this.bt_ok.TabIndex = 2;
@@ -115,7 +117,7 @@ namespace Archive2Disk
             // 
             this.cb_explode_attachments.AutoSize = true;
             this.cb_explode_attachments.Location = new System.Drawing.Point(5, 5);
-            this.cb_explode_attachments.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_explode_attachments.Margin = new System.Windows.Forms.Padding(2);
             this.cb_explode_attachments.Name = "cb_explode_attachments";
             this.cb_explode_attachments.Size = new System.Drawing.Size(183, 17);
             this.cb_explode_attachments.TabIndex = 3;
@@ -124,6 +126,9 @@ namespace Archive2Disk
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
@@ -146,6 +151,7 @@ namespace Archive2Disk
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cb_truncate);
             this.tabPage2.Controls.Add(this.cb_explode_attachments);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -155,6 +161,16 @@ namespace Archive2Disk
             this.tabPage2.Text = "TAB_PARAMS";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // cb_truncate
+            // 
+            this.cb_truncate.AutoSize = true;
+            this.cb_truncate.Location = new System.Drawing.Point(5, 27);
+            this.cb_truncate.Name = "cb_truncate";
+            this.cb_truncate.Size = new System.Drawing.Size(205, 17);
+            this.cb_truncate.TabIndex = 4;
+            this.cb_truncate.Text = "CB_TRUNCATE_PATH_TOO_LONG";
+            this.cb_truncate.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,7 +178,7 @@ namespace Archive2Disk
             this.ClientSize = new System.Drawing.Size(744, 407);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.bt_ok);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ConfigForm";
             this.Text = "CONFIG_FORM_TITLE";
             this.tabControl1.ResumeLayout(false);
@@ -185,5 +201,6 @@ namespace Archive2Disk
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.CheckBox cb_truncate;
     }
 }

@@ -51,9 +51,11 @@ namespace Archive2Disk
             strings["LABEL_TREATED_MAILS"] = new TranslatedString("en", "Archived mails:", true);
             strings["ARCHIVED_CATEGORY"] = new TranslatedString("en", "Archived", true);
             strings["PATH_TOO_LONG"] = new TranslatedString("en", "Path too long", true);
+            strings["FULL_PATH_TOO_LONG"] = new TranslatedString("en", "Absolute file path too long", true);
             strings["FILE_ALREADY_EXISTS"] = new TranslatedString("en", "File already exists", true);
             strings["ALREADY_CATEGORISED_AS_ARCHIVED"] = new TranslatedString("en", "Alread categorised as archived", true);
             strings["CB_EXPLODE_ATTACHMENTS"] = new TranslatedString("en", "Explode attachments in a separate folder", true);
+            strings["CB_TRUNCATE_PATH_TOO_LONG"] = new TranslatedString("en", "Automatically tuncate long path", true);
             strings["TAB_FOLDERS"] = new TranslatedString("en", "Folders", true);
             strings["TAB_PARAMS"] = new TranslatedString("en", "Options", true);
 
@@ -75,10 +77,12 @@ namespace Archive2Disk
             strings["CONFIG_COLUMN_FOLDER_DISK"].addOrUpdateTranslation("fr", "Stockage externe");
             strings["LABEL_TREATED_MAILS"].addOrUpdateTranslation("fr", "Mails archivés");
             strings["ARCHIVED_CATEGORY"].addOrUpdateTranslation("fr", "Archivé");
-            strings["PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Chemin de fichier trop long");
+            strings["PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Nom de répertoire trop long");
+            strings["FULL_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Chemin de fichier trop long");
             strings["FILE_ALREADY_EXISTS"].addOrUpdateTranslation("fr", "Le fichier existe déjà");
             strings["ALREADY_CATEGORISED_AS_ARCHIVED"].addOrUpdateTranslation("fr", "Déjà catégorisé archivé");
             strings["CB_EXPLODE_ATTACHMENTS"].addOrUpdateTranslation("fr", "Extraire les attachements dans un dossier séparé");
+            strings["CB_TRUNCATE_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Tronquer le chemins trop long automatiquement");
             strings["TAB_FOLDERS"].addOrUpdateTranslation("fr", "Dossiers");
             strings["TAB_PARAMS"].addOrUpdateTranslation("fr", "Options");
 

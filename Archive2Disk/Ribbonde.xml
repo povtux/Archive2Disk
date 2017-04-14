@@ -38,6 +38,18 @@
                   size="large"
                   getImage="GetImage" />
         </group>
+        <group id="ArchInfo" label="Nachrichten">
+          <button id="BtHelp"
+                  onAction="OnBtHelpClick"
+                  label="Hilfe"
+                  size="large"
+                  getImage="GetImage" />
+          <button id="BtInfo"
+                  onAction="OnBtInfoClick"
+                  label="über"
+                  size="large"
+                  getImage="GetImage" />
+        </group>
       </tab>
     </tabs>
   </ribbon>
