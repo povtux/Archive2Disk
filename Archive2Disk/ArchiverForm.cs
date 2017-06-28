@@ -41,20 +41,20 @@ namespace Archive2Disk
         public CultureInfo culture;
 
 
-        protected void activate(ThisAddIn addin)
+        protected void Activate(ThisAddIn addin)
         {
-            updateItemDelegate = new updateItem(updateEtat);
-            endArchiveDelegate = new endArchive(terminate);
-            addLIneDelegate = new addLIne(addLIneToList);
+            updateItemDelegate = new updateItem(UpdateEtat);
+            endArchiveDelegate = new endArchive(Terminate);
+            addLIneDelegate = new addLIne(AddLIneToList);
 
-            this.olApplication = addin.getApplication();
+            this.olApplication = addin.GetApplication();
             int lcid = this.olApplication.LanguageSettings.get_LanguageID(Microsoft.Office.Core.MsoAppLanguageID.msoLanguageIDUI);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(lcid);
             culture = Thread.CurrentThread.CurrentUICulture;
         }
 
-        public virtual void updateEtat(string id, string etat) { }
-        public virtual void terminate() { }
-        public virtual void addLIneToList(Outlook.MailItem mailitem, string destination, string etat) { }
+        public virtual void UpdateEtat(string id, string etat) { }
+        public virtual void Terminate() { }
+        public virtual void AddLIneToList(Outlook.MailItem mailitem, string destination, string etat) { }
     }
 }

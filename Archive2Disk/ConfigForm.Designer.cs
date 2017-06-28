@@ -55,6 +55,7 @@ namespace Archive2Disk
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cb_truncate = new System.Windows.Forms.CheckBox();
+            this.cb_ask_path_too_long = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -71,15 +72,15 @@ namespace Archive2Disk
             this.columnHeader2});
             this.lv_folders.FullRowSelect = true;
             this.lv_folders.GridLines = true;
-            this.lv_folders.Location = new System.Drawing.Point(8, 18);
-            this.lv_folders.Margin = new System.Windows.Forms.Padding(2);
+            this.lv_folders.Location = new System.Drawing.Point(11, 22);
+            this.lv_folders.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lv_folders.MultiSelect = false;
             this.lv_folders.Name = "lv_folders";
-            this.lv_folders.Size = new System.Drawing.Size(701, 313);
+            this.lv_folders.Size = new System.Drawing.Size(933, 384);
             this.lv_folders.TabIndex = 0;
             this.lv_folders.UseCompatibleStateImageBehavior = false;
             this.lv_folders.View = System.Windows.Forms.View.Details;
-            this.lv_folders.ItemActivate += new System.EventHandler(this.lv_folders_ItemActivate);
+            this.lv_folders.ItemActivate += new System.EventHandler(this.Lv_folders_ItemActivate);
             // 
             // columnHeader1
             // 
@@ -94,32 +95,31 @@ namespace Archive2Disk
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(7, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 13);
+            this.label1.Size = new System.Drawing.Size(212, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "LABEL_CONFIG_FOLDER_LIST";
             // 
             // bt_ok
             // 
             this.bt_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_ok.Location = new System.Drawing.Point(669, 379);
-            this.bt_ok.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_ok.Location = new System.Drawing.Point(892, 466);
+            this.bt_ok.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_ok.Name = "bt_ok";
-            this.bt_ok.Size = new System.Drawing.Size(56, 19);
+            this.bt_ok.Size = new System.Drawing.Size(75, 23);
             this.bt_ok.TabIndex = 2;
             this.bt_ok.Text = "BT_OK";
             this.bt_ok.UseVisualStyleBackColor = true;
-            this.bt_ok.Click += new System.EventHandler(this.bt_ok_Click);
+            this.bt_ok.Click += new System.EventHandler(this.Bt_ok_Click);
             // 
             // cb_explode_attachments
             // 
             this.cb_explode_attachments.AutoSize = true;
-            this.cb_explode_attachments.Location = new System.Drawing.Point(5, 5);
-            this.cb_explode_attachments.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_explode_attachments.Location = new System.Drawing.Point(7, 6);
+            this.cb_explode_attachments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_explode_attachments.Name = "cb_explode_attachments";
-            this.cb_explode_attachments.Size = new System.Drawing.Size(183, 17);
+            this.cb_explode_attachments.Size = new System.Drawing.Size(232, 21);
             this.cb_explode_attachments.TabIndex = 3;
             this.cb_explode_attachments.Text = "CB_EXPLODE_ATTACHMENTS";
             this.cb_explode_attachments.UseVisualStyleBackColor = true;
@@ -131,32 +131,36 @@ namespace Archive2Disk
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(16, 15);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(722, 362);
+            this.tabControl1.Size = new System.Drawing.Size(963, 446);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.lv_folders);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(714, 336);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(955, 417);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TAB_FOLDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cb_ask_path_too_long);
             this.tabPage2.Controls.Add(this.cb_truncate);
             this.tabPage2.Controls.Add(this.cb_explode_attachments);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(714, 336);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(955, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "TAB_PARAMS";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -164,21 +168,33 @@ namespace Archive2Disk
             // cb_truncate
             // 
             this.cb_truncate.AutoSize = true;
-            this.cb_truncate.Location = new System.Drawing.Point(5, 27);
+            this.cb_truncate.Location = new System.Drawing.Point(7, 33);
+            this.cb_truncate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_truncate.Name = "cb_truncate";
-            this.cb_truncate.Size = new System.Drawing.Size(205, 17);
+            this.cb_truncate.Size = new System.Drawing.Size(263, 21);
             this.cb_truncate.TabIndex = 4;
             this.cb_truncate.Text = "CB_TRUNCATE_PATH_TOO_LONG";
             this.cb_truncate.UseVisualStyleBackColor = true;
             // 
+            // cb_ask_path_too_long
+            // 
+            this.cb_ask_path_too_long.AutoSize = true;
+            this.cb_ask_path_too_long.Location = new System.Drawing.Point(7, 62);
+            this.cb_ask_path_too_long.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_ask_path_too_long.Name = "cb_ask_path_too_long";
+            this.cb_ask_path_too_long.Size = new System.Drawing.Size(215, 21);
+            this.cb_ask_path_too_long.TabIndex = 5;
+            this.cb_ask_path_too_long.Text = "CB_ASK_PATH_TOO_LONG";
+            this.cb_ask_path_too_long.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 407);
+            this.ClientSize = new System.Drawing.Size(992, 501);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.bt_ok);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ConfigForm";
             this.Text = "CONFIG_FORM_TITLE";
             this.tabControl1.ResumeLayout(false);
@@ -202,5 +218,6 @@ namespace Archive2Disk
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox cb_truncate;
+        private System.Windows.Forms.CheckBox cb_ask_path_too_long;
     }
 }

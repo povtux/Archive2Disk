@@ -58,6 +58,8 @@ namespace Archive2Disk
             strings["CB_TRUNCATE_PATH_TOO_LONG"] = new TranslatedString("en", "Automatically tuncate long path", true);
             strings["TAB_FOLDERS"] = new TranslatedString("en", "Folders", true);
             strings["TAB_PARAMS"] = new TranslatedString("en", "Options", true);
+            strings["QUESTION_FULL_PATH_TOO_LONG"] = new TranslatedString("en", "Please, provide a shorter path", true);
+            
 
             // LANG: FR
             strings["FORM_ARCHIVE_TO_DISK_TITLE"].addOrUpdateTranslation("fr", "Archiver sur disque");
@@ -85,6 +87,8 @@ namespace Archive2Disk
             strings["CB_TRUNCATE_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Tronquer le chemins trop long automatiquement");
             strings["TAB_FOLDERS"].addOrUpdateTranslation("fr", "Dossiers");
             strings["TAB_PARAMS"].addOrUpdateTranslation("fr", "Options");
+            strings["QUESTION_FULL_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Merci de proposer un chemin plus court");
+
 
             // LANG: DE
             strings["FORM_ARCHIVE_TO_DISK_TITLE"].addOrUpdateTranslation("de", "Disk Archiver");

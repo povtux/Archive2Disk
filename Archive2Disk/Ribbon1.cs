@@ -91,14 +91,14 @@ namespace Archive2Disk
         {
             f = new FormArchiveToDisk(addin);
             f.Shown += F_Shown;
-            Thread t = new Thread(f.showDlg);
+            Thread t = new Thread(f.ShowDlg);
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
 
         public void OnBtInfoClick(Office.IRibbonControl control)
         {
-            var formAbout = new AboutForm();
+            var formAbout = new AboutBox1(); //AboutForm();
             formAbout.ShowDialog();
         }
 
@@ -116,12 +116,12 @@ namespace Archive2Disk
         public void OnBtMassArchiveClick(Office.IRibbonControl control)
         {
             var massForm = new FormMassArchiveToDisk(addin);
-            massForm.showDlg();
+            massForm.ShowDlg();
         }
 
         private void F_Shown(object sender, EventArgs e)
         {
-            f.fillMailList();
+            f.FillMailList();
         }
 
         #endregion

@@ -36,14 +36,14 @@ namespace Archive2Disk
 
         public FormArchiveToDisk(ThisAddIn addin)
         {
-            activate(addin);
+            Activate(addin);
             InitializeComponent();
-            updateLabelsWithLang(culture);
-            addLastPathsToCombo();
+            UpdateLabelsWithLang(culture);
+            AddLastPathsToCombo();
             selection = new List<Microsoft.Office.Interop.Outlook.MailItem>();
         }
 
-        protected void updateLabelsWithLang(CultureInfo info)
+        protected void UpdateLabelsWithLang(CultureInfo info)
         {
             Localisation loc = Localisation.getInstance();
             this.Text = loc.getString(info.TwoLetterISOLanguageName, this.Text);
@@ -59,7 +59,7 @@ namespace Archive2Disk
             this.cb_explode_attachements.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_explode_attachements.Text);
         }
 
-        private void addLastPathsToCombo()
+        private void AddLastPathsToCombo()
         {
             filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "Archive2Disk", "outlookArchiveToDiskLastFolders.txt");
@@ -67,9 +67,10 @@ namespace Archive2Disk
             {
                 lines = File.ReadAllLines(@filename);
 
-                var dataSource = new List<ComboItem>();
-
-                dataSource.Add(new ComboItem() { Value = "", Id = "line0" });
+                var dataSource = new List<ComboItem>
+                {
+                    new ComboItem() { Value = "", Id = "line0" }
+                };
                 int i = 1;
                 foreach (var line in lines)
                 {
@@ -91,12 +92,12 @@ namespace Archive2Disk
             }
         }
 
-        public void showDlg()
+        public void ShowDlg()
         {
             this.ShowDialog();
         }
 
-        public void fillMailList()
+        public void FillMailList()
         {
             if (olApplication.ActiveExplorer().Selection.Count > 0)
             {
@@ -113,8 +114,10 @@ namespace Archive2Disk
                             String.Format("{0:yyyy-MM-dd HH:mm:ss}", mailitem.ReceivedTime),
                             mailitem.Subject,
                             "-"
-                        });
-                        item.Name = mailitem.EntryID;
+                        })
+                        {
+                            Name = mailitem.EntryID
+                        };
                         listView1.Items.Add(item);
                         this.l_mailsInSelection.Text = selection.Count.ToString();
                     }
@@ -122,7 +125,7 @@ namespace Archive2Disk
             }
         }
 
-        override public void updateEtat(string id, string etat)
+        override public void UpdateEtat(string id, string etat)
         {
             if(!groups.ContainsKey(etat))
             {
@@ -142,13 +145,13 @@ namespace Archive2Disk
             catch (Exception) { }
         }
 
-        override public void terminate()
+        override public void Terminate()
         {
             this.bt_close.Enabled = true;
             this.bt_cancel.Enabled = false;
         }
 
-        private void bt_destination_Click(object sender, EventArgs e)
+        private void Bt_destination_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fold = new FolderBrowserDialog();
             if (this.tb_destination.Text != "" && Directory.Exists(this.tb_destination.Text))
@@ -161,7 +164,7 @@ namespace Archive2Disk
             }
         }
 
-        private void bt_ok_Click(object sender, EventArgs e)
+        private void Bt_ok_Click(object sender, EventArgs e)
         {
             this.bt_ok.Enabled = false;
             this.bt_close.Enabled = false;
@@ -178,23 +181,24 @@ namespace Archive2Disk
 
             archiver = new Archiver(this.tb_destination.Text, this);
             if (this.cb_explode_attachements.Checked)
-                archiver.enableExtractAttachments();
-            if (Config.getInstance().getOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) archiver.enableTruncatePathTooLong();
-            Thread t = new Thread(archiver.archive);
+                archiver.EnableExtractAttachments();
+            if (Config.GetInstance().GetOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) archiver.EnableTruncatePathTooLong();
+            if (Config.GetInstance().GetOption("ASK_PATH_TOO_LONG").Equals("TRUE")) archiver.EnableAskPathTooLong();
+            Thread t = new Thread(archiver.Archive);
             t.Start();
         }
 
-        private void bt_cancel_Click(object sender, EventArgs e)
+        private void Bt_cancel_Click(object sender, EventArgs e)
         {
-            archiver.askToStop();
+            archiver.AskToStop();
         }
 
-        private void bt_close_Click(object sender, EventArgs e)
+        private void Bt_close_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        private void tb_destination_TextChanged(object sender, EventArgs e)
+        private void Tb_destination_TextChanged(object sender, EventArgs e)
         {
             if (this.tb_destination.Text != ""
                 && this.tb_destination.Text.Length >= 3
@@ -204,7 +208,7 @@ namespace Archive2Disk
                 this.bt_ok.Enabled = false;
         }
 
-        private void tb_destination_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tb_destination_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.tb_destination.Text != ""
                 && this.tb_destination.Text.Length >= 3

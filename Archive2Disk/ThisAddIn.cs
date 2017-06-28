@@ -15,11 +15,6 @@
 // along with Archive2Disk.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using System.Globalization;
@@ -48,7 +43,7 @@ namespace Archive2Disk
             return new Ribbon1(this, Thread.CurrentThread.CurrentUICulture);
         }
 
-        public Outlook.Application getApplication()
+        public Outlook.Application GetApplication()
         {
             return this.Application;
         }

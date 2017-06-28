@@ -29,24 +29,24 @@ namespace Archive2Disk
 
         public FormMassArchiveToDisk(ThisAddIn addin)
         {
-            activate(addin);
+            Activate(addin);
             InitializeComponent();
-            updateLabelsWithLang(culture);
+            UpdateLabelsWithLang(culture);
             this.archiver = new Archiver("", this);
 
             this.bt_close.Enabled = false;
             this.bt_cancel.Enabled = true;
         }
 
-        public void showDlg()
+        public void ShowDlg()
         {
-            Thread t = new Thread(archiver.massArchive);
+            Thread t = new Thread(archiver.MassArchive);
             t.Start();
 
             this.ShowDialog();
         }
 
-        protected void updateLabelsWithLang(CultureInfo info)
+        protected void UpdateLabelsWithLang(CultureInfo info)
         {
             Localisation loc = Localisation.getInstance();
             this.Text = loc.getString(info.TwoLetterISOLanguageName, this.Text);
@@ -79,7 +79,7 @@ namespace Archive2Disk
             catch (Exception) { }
         }*/
 
-        override public void addLIneToList(Outlook.MailItem mailitem, string destination, string etat)
+        override public void AddLIneToList(Outlook.MailItem mailitem, string destination, string etat)
         {
             if (!groups.ContainsKey(etat))
             {
@@ -93,26 +93,28 @@ namespace Archive2Disk
                             mailitem.Subject,
                             destination,
                             etat
-                        });
-            item.Name = mailitem.EntryID;
-            item.Group = groups[etat];
+                        })
+            {
+                Name = mailitem.EntryID,
+                Group = groups[etat]
+            };
             listView1.Items.Add(item);
         }
 
-        override public void terminate()
+        override public void Terminate()
         {
             this.bt_close.Enabled = true;
             this.bt_cancel.Enabled = false;
         }
 
-        private void bt_close_Click(object sender, EventArgs e)
+        private void Bt_close_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        private void bt_cancel_Click(object sender, EventArgs e)
+        private void Bt_cancel_Click(object sender, EventArgs e)
         {
-            archiver.askToStop();
+            archiver.AskToStop();
         }
     }
 }

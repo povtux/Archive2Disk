@@ -81,7 +81,7 @@ namespace Archive2Disk
             this.bt_destination.TabIndex = 2;
             this.bt_destination.Text = "...";
             this.bt_destination.UseVisualStyleBackColor = true;
-            this.bt_destination.Click += new System.EventHandler(this.bt_destination_Click);
+            this.bt_destination.Click += new System.EventHandler(this.Bt_destination_Click);
             // 
             // listView1
             // 
@@ -139,7 +139,7 @@ namespace Archive2Disk
             this.bt_ok.TabIndex = 5;
             this.bt_ok.Text = "BT_OK";
             this.bt_ok.UseVisualStyleBackColor = true;
-            this.bt_ok.Click += new System.EventHandler(this.bt_ok_Click);
+            this.bt_ok.Click += new System.EventHandler(this.Bt_ok_Click);
             // 
             // bt_close
             // 
@@ -151,7 +151,7 @@ namespace Archive2Disk
             this.bt_close.TabIndex = 6;
             this.bt_close.Text = "BT_CLOSE";
             this.bt_close.UseVisualStyleBackColor = true;
-            this.bt_close.Click += new System.EventHandler(this.bt_close_Click);
+            this.bt_close.Click += new System.EventHandler(this.Bt_close_Click);
             // 
             // l_mailsInSelection
             // 
@@ -186,7 +186,7 @@ namespace Archive2Disk
             this.bt_cancel.TabIndex = 9;
             this.bt_cancel.Text = "BT_CANCEL";
             this.bt_cancel.UseVisualStyleBackColor = true;
-            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            this.bt_cancel.Click += new System.EventHandler(this.Bt_cancel_Click);
             // 
             // tb_destination
             // 
@@ -199,8 +199,8 @@ namespace Archive2Disk
             this.tb_destination.Name = "tb_destination";
             this.tb_destination.Size = new System.Drawing.Size(749, 24);
             this.tb_destination.TabIndex = 10;
-            this.tb_destination.SelectedIndexChanged += new System.EventHandler(this.tb_destination_SelectedIndexChanged);
-            this.tb_destination.TextChanged += new System.EventHandler(this.tb_destination_TextChanged);
+            this.tb_destination.SelectedIndexChanged += new System.EventHandler(this.Tb_destination_SelectedIndexChanged);
+            this.tb_destination.TextChanged += new System.EventHandler(this.Tb_destination_TextChanged);
             // 
             // cb_explode_attachements
             // 

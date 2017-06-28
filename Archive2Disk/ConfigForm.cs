@@ -28,14 +28,14 @@ namespace Archive2Disk
     {
         public ConfigForm(ThisAddIn addin)
         {
-            var olApplication = addin.getApplication();
+            var olApplication = addin.GetApplication();
             int lcid = olApplication.LanguageSettings.get_LanguageID(Microsoft.Office.Core.MsoAppLanguageID.msoLanguageIDUI);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(lcid);
             InitializeComponent();
-            updateLabelsWithLang(Thread.CurrentThread.CurrentUICulture);
+            UpdateLabelsWithLang(Thread.CurrentThread.CurrentUICulture);
             Outlook.Folder root = olApplication.Session.DefaultStore.GetRootFolder() as Outlook.Folder;
             EnumerateFolders(root, "└ ");
-            reloadOptions();
+            ReloadOptions();
         }
 
         private void EnumerateFolders(Outlook.Folder folder, string prefix)
@@ -48,15 +48,17 @@ namespace Archive2Disk
                 {
                     if(childFolder.DefaultItemType == Outlook.OlItemType.olMailItem)
                     {
-                        if (Config.getInstance().getFoldersBinding().ContainsKey(childFolder.EntryID))
-                            diskFolder = Config.getInstance().getFoldersBinding()[childFolder.EntryID];
+                        if (Config.GetInstance().GetFoldersBinding().ContainsKey(childFolder.EntryID))
+                            diskFolder = Config.GetInstance().GetFoldersBinding()[childFolder.EntryID];
                         else
                             diskFolder = "";
                         var item = new ListViewItem(new string[] {
                             prefix + childFolder.Name,
                             diskFolder
-                        });
-                        item.Name = childFolder.EntryID;
+                        })
+                        {
+                            Name = childFolder.EntryID
+                        };
                         lv_folders.Items.Add(item);
                         // Call EnumerateFolders using childFolder.
                         EnumerateFolders(childFolder, "    " + prefix);
@@ -65,13 +67,14 @@ namespace Archive2Disk
             }
         }
 
-        private void reloadOptions()
+        private void ReloadOptions()
         {
-            if (Config.getInstance().getOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) cb_explode_attachments.Checked = true;
-            if (Config.getInstance().getOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) cb_truncate.Checked = true;
+            if (Config.GetInstance().GetOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) cb_explode_attachments.Checked = true;
+            if (Config.GetInstance().GetOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) cb_truncate.Checked = true;
+            if (Config.GetInstance().GetOption("ASK_PATH_TOO_LONG").Equals("TRUE")) cb_ask_path_too_long.Checked = true;
         }
 
-        private void bt_ok_Click(object sender, EventArgs e)
+        private void Bt_ok_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> newBinding = new Dictionary<string, string>();
             foreach(ListViewItem item in lv_folders.Items)
@@ -79,14 +82,14 @@ namespace Archive2Disk
                 if(!item.SubItems[1].Text.Equals(""))
                     newBinding.Add(item.Name, item.SubItems[1].Text);
             }
-            Config.getInstance().updateFoldersBinding(newBinding);
+            Config.GetInstance().UpdateFoldersBinding(newBinding);
 
             // traitement des options
-            saveOptions();
+            SaveOptions();
             this.Close();
         }
 
-        private void lv_folders_ItemActivate(object sender, EventArgs e)
+        private void Lv_folders_ItemActivate(object sender, EventArgs e)
         {
             ListViewItem item = ((ListView)sender).SelectedItems[0];
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -97,7 +100,7 @@ namespace Archive2Disk
             }
         }
 
-        private void updateLabelsWithLang(CultureInfo info)
+        private void UpdateLabelsWithLang(CultureInfo info)
         {
             Localisation loc = Localisation.getInstance();
             this.Text = loc.getString(info.TwoLetterISOLanguageName, this.Text);
@@ -107,18 +110,21 @@ namespace Archive2Disk
             this.bt_ok.Text = loc.getString(info.TwoLetterISOLanguageName, this.bt_ok.Text);
             this.cb_explode_attachments.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_explode_attachments.Text);
             this.cb_truncate.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_truncate.Text);
+            this.cb_ask_path_too_long.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_ask_path_too_long.Text);
             this.tabPage1.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage1.Text);
             this.tabPage2.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage2.Text);
         }
 
-        private void saveOptions()
+        private void SaveOptions()
         {
-            if (cb_explode_attachments.Checked) Config.getInstance().addOrUpdateOption("EXPLODE_ATTACHMENTS", "TRUE");
-            else Config.getInstance().addOrUpdateOption("EXPLODE_ATTACHMENTS", "FALSE");
-            if (cb_truncate.Checked) Config.getInstance().addOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "TRUE");
-            else Config.getInstance().addOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "FALSE");
+            if (cb_explode_attachments.Checked) Config.GetInstance().AddOrUpdateOption("EXPLODE_ATTACHMENTS", "TRUE");
+            else Config.GetInstance().AddOrUpdateOption("EXPLODE_ATTACHMENTS", "FALSE");
+            if (cb_truncate.Checked) Config.GetInstance().AddOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "TRUE");
+            else Config.GetInstance().AddOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "FALSE");
+            if (cb_ask_path_too_long.Checked) Config.GetInstance().AddOrUpdateOption("ASK_PATH_TOO_LONG", "TRUE");
+            else Config.GetInstance().AddOrUpdateOption("ASK_PATH_TOO_LONG", "FALSE");
 
-            Config.getInstance().saveOptions();
+            Config.GetInstance().SaveOptions();
         }
     }
 }

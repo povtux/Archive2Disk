@@ -29,15 +29,15 @@
     <AssemblyName>Archive2Disk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
-    <IsWebBootstrapper>False</IsWebBootstrapper>
+    <IsWebBootstrapper>True</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>publish\</PublishUrl>
-    <InstallUrl />
+    <PublishUrl>ftp://vpn.verschoore.fr/Archive2Disk/</PublishUrl>
+    <InstallUrl>http://apps.verschoore.fr/Archive2Disk/</InstallUrl>
     <TargetCulture>fr</TargetCulture>
-    <ApplicationVersion>1.1.0.2</ApplicationVersion>
+    <ApplicationVersion>1.1.0.6</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateInterval>0</UpdateInterval>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateInterval>1</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
     <ProductName>Archive2Disk</ProductName>
     <PublisherName>Pierre-Olivier VERSCHOORE</PublisherName>
@@ -49,7 +49,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 et x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -178,11 +178,11 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="Archiver.cs" />
     <Compile Include="ArchiverForm.cs">
@@ -212,9 +212,15 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SingleQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleQuestionForm.Designer.cs">
+      <DependentUpon>SingleQuestionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TranslatedString.cs" />
-    <EmbeddedResource Include="AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
@@ -234,6 +240,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SingleQuestionForm.resx">
+      <DependentUpon>SingleQuestionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Archive2Disk_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -285,7 +294,7 @@
     <ManifestKeyFile>Archive2Disk_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1DC29C0EFAD6776A2CABBAC7D96E4E9D5EA689E9</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>522A2CD61DEE34870B574D4DC734E9D9B235D9C7</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

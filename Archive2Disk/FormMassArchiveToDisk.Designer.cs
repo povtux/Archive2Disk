@@ -93,7 +93,7 @@ namespace Archive2Disk
             this.bt_close.TabIndex = 2;
             this.bt_close.Text = "BT_CLOSE";
             this.bt_close.UseVisualStyleBackColor = true;
-            this.bt_close.Click += new System.EventHandler(this.bt_close_Click);
+            this.bt_close.Click += new System.EventHandler(this.Bt_close_Click);
             // 
             // bt_cancel
             // 
@@ -104,7 +104,7 @@ namespace Archive2Disk
             this.bt_cancel.TabIndex = 3;
             this.bt_cancel.Text = "BT_CANCEL";
             this.bt_cancel.UseVisualStyleBackColor = true;
-            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            this.bt_cancel.Click += new System.EventHandler(this.Bt_cancel_Click);
             // 
             // ch_date
             // 

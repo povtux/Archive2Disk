@@ -36,23 +36,23 @@ namespace Archive2Disk
         {
             foldersBonding = new Dictionary<string, string>();
             options = new Dictionary<string, string>();
-            loadFoldersBindingFile();
-            loadOptionsFile();
+            LoadFoldersBindingFile();
+            LoadOptionsFile();
         }
 
-        public static Config getInstance()
+        public static Config GetInstance()
         {
             if (instance == null) instance = new Config();
             return instance;
         }
 
-        public void updateFoldersBinding(Dictionary<string, string> newBinding)
+        public void UpdateFoldersBinding(Dictionary<string, string> newBinding)
         {
             foldersBonding = newBinding;
-            saveBinding();
+            SaveBinding();
         }
 
-        public void addOrUpdateOption(string key, string val)
+        public void AddOrUpdateOption(string key, string val)
         {
             if(options.ContainsKey(key))
             {
@@ -64,7 +64,7 @@ namespace Archive2Disk
             }
         }
 
-        private void saveBinding()
+        private void SaveBinding()
         {
             int i = 0;
             string[] newlines = new string[foldersBonding.Count];
@@ -76,7 +76,7 @@ namespace Archive2Disk
             File.WriteAllLines(filenameFolders, newlines);
         }
 
-        public void saveOptions()
+        public void SaveOptions()
         {
             int i = 0;
             string[] newlines = new string[options.Count];
@@ -88,7 +88,7 @@ namespace Archive2Disk
             File.WriteAllLines(filenameOptions, newlines);
         }
 
-        private void loadFoldersBindingFile()
+        private void LoadFoldersBindingFile()
         {
             filenameFolders = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "Archive2Disk", "outlookArchiveToDiskFoldersBinding.csv");
@@ -108,7 +108,7 @@ namespace Archive2Disk
             }
         }
 
-        private void loadOptionsFile()
+        private void LoadOptionsFile()
         {
             filenameOptions = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "Archive2Disk", "outlookArchiveToDiskOptions.csv");
@@ -128,18 +128,18 @@ namespace Archive2Disk
             }
         }
 
-        public Dictionary<string, string> getFoldersBinding()
+        public Dictionary<string, string> GetFoldersBinding()
         {
             return foldersBonding;
         }
 
-        public string getOption(string key)
+        public string GetOption(string key)
         {
             if (options.ContainsKey(key)) return options[key];
             return "";
         }
 
-        public Dictionary<string, string> getOptions()
+        public Dictionary<string, string> GetOptions()
         {
             return options;
         }

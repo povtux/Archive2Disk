@@ -28,6 +28,7 @@ namespace Archive2Disk
         private bool shouldStop = false;
         private bool extractAttachments = false;
         private bool truncatePathTooLong = false;
+        private bool askPathTooLong = false;
 
         public Archiver(string dir, ArchiverForm parent)
         {
@@ -35,17 +36,22 @@ namespace Archive2Disk
             this.parent = parent;
         }
 
-        public void enableExtractAttachments()
+        public void EnableExtractAttachments()
         {
             this.extractAttachments = true;
         }
 
-        public void enableTruncatePathTooLong()
+        public void EnableTruncatePathTooLong()
         {
             this.truncatePathTooLong = true;
         }
 
-        public void archive()
+        public void EnableAskPathTooLong()
+        {
+            this.askPathTooLong = true;
+        }
+
+        public void Archive()
         {
             var customCat = Localisation.getInstance().getString(
                 parent.culture.TwoLetterISOLanguageName,
@@ -61,7 +67,7 @@ namespace Archive2Disk
                     parent.Invoke(parent.endArchiveDelegate);
                     return;
                 }
-                msg = archiveItem(item);
+                msg = ArchiveItem(item);
                 if (msg.Equals("Ok"))
                 {
                     if (item.Categories == null || item.Categories.Trim().Equals("")) // no current categories assigned
@@ -79,17 +85,18 @@ namespace Archive2Disk
             parent.Invoke(parent.endArchiveDelegate);
         }
 
-        public void massArchive()
+        public void MassArchive()
         {
-            if (Config.getInstance().getOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) enableExtractAttachments();
-            if (Config.getInstance().getOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) enableTruncatePathTooLong();
+            if (Config.GetInstance().GetOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) EnableExtractAttachments();
+            if (Config.GetInstance().GetOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) EnableTruncatePathTooLong();
+            if (Config.GetInstance().GetOption("ASK_PATH_TOO_LONG").Equals("TRUE")) EnableAskPathTooLong();
 
             string msg;
             var customCat = Localisation.getInstance().getString(
                 parent.culture.TwoLetterISOLanguageName,
                 "ARCHIVED_CATEGORY"
                 );
-            var binding = Config.getInstance().getFoldersBinding();
+            var binding = Config.GetInstance().GetFoldersBinding();
             Outlook.Folder root = parent.olApplication.Session.DefaultStore.GetRootFolder() as Outlook.Folder;
             foreach (string key in binding.Keys)
             {
@@ -100,17 +107,16 @@ namespace Archive2Disk
                     // iterate mails in folder
                     foreach(var item in folder.Items)
                     {
-                        if(item is Outlook.MailItem)
+                        if (item is Outlook.MailItem mailitem)
                         {
-                            var mailitem = (Outlook.MailItem)item;
 
                             // if no category or not categorised as achived, archive and continue
-                            if(mailitem.Categories == null || 
+                            if (mailitem.Categories == null ||
                                 mailitem.Categories.Trim().Equals("") ||
                                 !mailitem.Categories.Contains(customCat))
                             {
                                 // archive items
-                                msg = archiveItem(mailitem, binding[key]);
+                                msg = ArchiveItem(mailitem, binding[key]);
                                 // update categories if needed
                                 if (msg.Equals("Ok"))
                                 {
@@ -163,31 +169,31 @@ namespace Archive2Disk
             return null;
         }
 
-        public void askToStop()
+        public void AskToStop()
         {
             shouldStop = true;
         }
 
-        public string archiveItem(Outlook.MailItem item)
+        public string ArchiveItem(Outlook.MailItem item)
         {
-            return archiveItem(item, this.dir);
+            return ArchiveItem(item, this.dir);
         }
 
-        public string archiveItem(Outlook.MailItem item, string dir)
+        public string ArchiveItem(Outlook.MailItem item, string dir)
         {
             string archived = "erreur";
-            string filename = Path.Combine(dir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject) + ".msg");
+            string shortFilename = String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + CleanFileName(item.Subject);
+            string filename = Path.Combine(dir, shortFilename + ".msg");
 
             // si extraction dans dossier séparé, on redéfini le filename
-            string newdir = dir;
             if(extractAttachments)
             {
-                newdir = Path.Combine(dir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject));
-                filename = Path.Combine(newdir, String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + cleanFileName(item.Subject) + ".msg");
+                dir = Path.Combine(dir, shortFilename);
+                filename = Path.Combine(dir, shortFilename + ".msg");
             }
 
             // si on fleurte avec les limites, on ne sauve pas
-            if (newdir.Length > 230)
+            if (dir.Length > 230)
             {
                 return Localisation.getInstance().getString(
                     parent.culture.TwoLetterISOLanguageName,
@@ -200,6 +206,28 @@ namespace Archive2Disk
             {
                 if(truncatePathTooLong)
                     filename = filename.Substring(0, 250) + ".msg";
+                else if(askPathTooLong)
+                {
+                    do
+                    {
+                        string error = Localisation.getInstance().getString(
+                                parent.culture.TwoLetterISOLanguageName,
+                                "FULL_PATH_TOO_LONG"
+                           );
+
+                        shortFilename = SingleQuestionForm.Ask(
+                            Localisation.getInstance().getString(
+                                parent.culture.TwoLetterISOLanguageName,
+                                "QUESTION_FULL_PATH_TOO_LONG"
+                           ),
+                            shortFilename,
+                            null, 
+                            null,
+                            error);
+
+                        filename = Path.Combine(dir, shortFilename + ".msg");
+                    } while (filename.Length > 254 || File.Exists(filename));
+                }
                 else
                     return Localisation.getInstance().getString(
                                 parent.culture.TwoLetterISOLanguageName,
@@ -216,7 +244,7 @@ namespace Archive2Disk
             // si extraction des attachements, on est OK sur longueur et not exists, on tente de créer le répertoire
             if(extractAttachments)
             {
-                Directory.CreateDirectory(newdir);
+                Directory.CreateDirectory(dir);
             }
 
             // on tente de sauver
@@ -229,7 +257,7 @@ namespace Archive2Disk
                 {
                     foreach(Outlook.Attachment att in item.Attachments)
                     {
-                        att.SaveAsFile(Path.Combine(newdir, att.FileName));
+                        att.SaveAsFile(Path.Combine(dir, att.FileName));
                     }
                 }
                 archived = "Ok";
@@ -242,7 +270,7 @@ namespace Archive2Disk
             return archived;
         }
 
-        private string cleanFileName(string origin)
+        private string CleanFileName(string origin)
         {
             if (origin == null || origin.Equals("")) return "(sans sujet)";
             return origin.Replace('"', '_')
