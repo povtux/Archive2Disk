@@ -30,11 +30,11 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>True</IsWebBootstrapper>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>ftp://vpn.verschoore.fr/Archive2Disk/</PublishUrl>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <PublishUrl>ftp://apps.verschoore.fr/Archive2Disk/</PublishUrl>
     <InstallUrl>http://apps.verschoore.fr/Archive2Disk/</InstallUrl>
     <TargetCulture>fr</TargetCulture>
-    <ApplicationVersion>1.1.0.6</ApplicationVersion>
+    <ApplicationVersion>1.1.0.14</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>1</UpdateInterval>
@@ -60,11 +60,6 @@
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft Visual Studio 2010 Tools pour Office Runtime %28x86 et x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
@@ -212,6 +207,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Ressources\lang.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SingleQuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +241,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ressources\lang.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\lang.fr.resx" />
     <EmbeddedResource Include="SingleQuestionForm.resx">
       <DependentUpon>SingleQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,10 +297,17 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Archive2Disk_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>522A2CD61DEE34870B574D4DC734E9D9B235D9C7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5D384C65565C6B5F85D484433080DD4A3E56760F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://time.certum.pl/</ManifestTimestampUrl>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

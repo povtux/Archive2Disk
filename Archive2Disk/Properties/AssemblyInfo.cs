@@ -10,7 +10,7 @@ using System.Security;
 [assembly: AssemblyTitle("Archive2Disk")]
 [assembly: AssemblyDescription("MS Outlook plugin that enables the user to easily mass archive mails to disk taking care of double file names or path too long")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("P.O. Verschoore")]
+[assembly: AssemblyCompany("Pierre-Olivier VERSCHOORE")]
 [assembly: AssemblyProduct("Archive2Disk")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
@@ -33,7 +33,7 @@ using System.Security;
 //
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
 // en utilisant '*', comme indiqué ci-dessous :
-[assembly: AssemblyVersion("1.2.*")]
+[assembly: AssemblyVersion("1.2.0.*")]
 // [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguage("en")]

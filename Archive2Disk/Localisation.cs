@@ -20,6 +20,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.Resources;
 
 namespace Archive2Disk
 {
@@ -27,6 +29,7 @@ namespace Archive2Disk
     {
         Dictionary<string, TranslatedString> strings;
         static Localisation instance = new Localisation();
+        ResourceManager res_man;
 
         private Localisation()
         {
@@ -56,6 +59,7 @@ namespace Archive2Disk
             strings["ALREADY_CATEGORISED_AS_ARCHIVED"] = new TranslatedString("en", "Alread categorised as archived", true);
             strings["CB_EXPLODE_ATTACHMENTS"] = new TranslatedString("en", "Explode attachments in a separate folder", true);
             strings["CB_TRUNCATE_PATH_TOO_LONG"] = new TranslatedString("en", "Automatically tuncate long path", true);
+            strings["CB_ASK_PATH_TOO_LONG"] = new TranslatedString("en", "Ask for a shorter filename when long path is detected", true);
             strings["TAB_FOLDERS"] = new TranslatedString("en", "Folders", true);
             strings["TAB_PARAMS"] = new TranslatedString("en", "Options", true);
             strings["QUESTION_FULL_PATH_TOO_LONG"] = new TranslatedString("en", "Please, provide a shorter path", true);
@@ -85,6 +89,7 @@ namespace Archive2Disk
             strings["ALREADY_CATEGORISED_AS_ARCHIVED"].addOrUpdateTranslation("fr", "Déjà catégorisé archivé");
             strings["CB_EXPLODE_ATTACHMENTS"].addOrUpdateTranslation("fr", "Extraire les attachements dans un dossier séparé");
             strings["CB_TRUNCATE_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Tronquer le chemins trop long automatiquement");
+            strings["CB_ASK_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Demander un nom de fichier plus court lors de la détection de chemins trop long");
             strings["TAB_FOLDERS"].addOrUpdateTranslation("fr", "Dossiers");
             strings["TAB_PARAMS"].addOrUpdateTranslation("fr", "Options");
             strings["QUESTION_FULL_PATH_TOO_LONG"].addOrUpdateTranslation("fr", "Merci de proposer un chemin plus court");
@@ -108,10 +113,14 @@ namespace Archive2Disk
             return instance;
         }
 
-        public string getString(string lang, string id)
+        public string getString(string lg, string id)
         {
-            if (strings.ContainsKey(id)) return strings[id].getTranslation(lang);
-            return null;
+            if (res_man == null)
+                res_man = new ResourceManager("Archive2Disk.Ressources.lang", typeof(ArchiverForm).Assembly);
+            CultureInfo ci = CultureInfo.CreateSpecificCulture(lg);
+            return res_man.GetString(id, ci);
+            //if (strings.ContainsKey(id)) return strings[id].getTranslation(lang);
+            //return null;
         }
     }
 }

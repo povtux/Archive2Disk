@@ -46,7 +46,7 @@
             this.tableLayoutPanel.ColumnCount = 3;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
             this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
@@ -90,7 +90,7 @@
             this.labelProductName.Margin = new System.Windows.Forms.Padding(8, 0, 4, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 21);
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(280, 21);
+            this.labelProductName.Size = new System.Drawing.Size(279, 21);
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "Nom du produit";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,7 +102,7 @@
             this.labelVersion.Margin = new System.Windows.Forms.Padding(8, 0, 4, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 21);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(280, 21);
+            this.labelVersion.Size = new System.Drawing.Size(279, 21);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -114,7 +114,7 @@
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(8, 0, 4, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 21);
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(280, 21);
+            this.labelCopyright.Size = new System.Drawing.Size(279, 21);
             this.labelCopyright.TabIndex = 21;
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,7 +126,7 @@
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(8, 0, 4, 0);
             this.labelCompanyName.MaximumSize = new System.Drawing.Size(0, 21);
             this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(280, 21);
+            this.labelCompanyName.Size = new System.Drawing.Size(279, 21);
             this.labelCompanyName.TabIndex = 22;
             this.labelCompanyName.Text = "Nom de la société";
             this.labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,7 +149,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(438, 96);
+            this.linkLabel1.Location = new System.Drawing.Point(437, 96);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(101, 17);
             this.linkLabel1.TabIndex = 25;
