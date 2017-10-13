@@ -43,8 +43,6 @@ namespace Archive2Disk
                 res_man = new ResourceManager("Archive2Disk.Ressources.lang", typeof(ArchiverForm).Assembly);
             CultureInfo ci = CultureInfo.CreateSpecificCulture(lg);
             return res_man.GetString(id, ci);
-            //if (strings.ContainsKey(id)) return strings[id].getTranslation(lang);
-            //return null;
         }
     }
 }
