@@ -219,7 +219,6 @@
     <Compile Include="SingleQuestionForm.Designer.cs">
       <DependentUpon>SingleQuestionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TranslatedString.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>

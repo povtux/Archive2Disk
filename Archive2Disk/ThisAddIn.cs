@@ -52,9 +52,13 @@ namespace Archive2Disk
         {
             Outlook.Categories categories =
                 Application.Session.Categories;
-            if (!CategoryExists("Archivé"))
+            string categorie = Localisation.getInstance().getString(
+                Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName, 
+                "ARCHIVED_CATEGORY"
+                );
+            if (!CategoryExists(categorie))
             {
-                Outlook.Category category = categories.Add("Archivé",
+                Outlook.Category category = categories.Add(categorie,
                     Outlook.OlCategoryColor.olCategoryColorGreen);
             }
         }
