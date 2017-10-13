@@ -27,7 +27,6 @@ namespace Archive2Disk
 {
     class Localisation
     {
-        Dictionary<string, TranslatedString> strings;
         static Localisation instance = new Localisation();
         ResourceManager res_man;
 
