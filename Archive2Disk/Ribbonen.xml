@@ -59,6 +59,10 @@
           label="Archive item to disk"
           onAction="OnMyButtonClick"
           getImage="GetImage"/>
+      <button id="Archive2DiskBtArchiveRenameClick"
+          label="Archive and rename"
+          onAction="OnBtArchiveRenameClick"
+          getImage="GetImage"/>
     </contextMenu>
     <contextMenu idMso="ContextMenuMultipleItems">
       <button id="MyContextMenuMultipleItems"

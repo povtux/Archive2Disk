@@ -119,6 +119,12 @@ namespace Archive2Disk
             massForm.ShowDlg();
         }
 
+        public void OnBtArchiveRenameClick(Office.IRibbonControl control)
+        {
+            var renForm = new FormArchiveRename(addin);
+            renForm.ShowDlg();
+        }
+
         private void F_Shown(object sender, EventArgs e)
         {
             f.FillMailList();
@@ -133,6 +139,7 @@ namespace Archive2Disk
                 case "MyContextMenuMailItem":
                 case "MyContextMenuMultipleItems":
                 case "BtArchive":
+                case "Archive2DiskBtArchiveRenameClick":
                 case "BtMassArchive":
                     {
                         Assembly myAssembly = Assembly.GetExecutingAssembly();

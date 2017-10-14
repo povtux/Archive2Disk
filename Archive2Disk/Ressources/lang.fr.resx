@@ -123,6 +123,9 @@
   <data name="ARCHIVED_CATEGORY" xml:space="preserve">
     <value>Archivé</value>
   </data>
+  <data name="ARCHIVE_RENAME_QUESTION" xml:space="preserve">
+    <value>Saisir le nom de fichier désiré:</value>
+  </data>
   <data name="BT_CANCEL" xml:space="preserve">
     <value>Annuler</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="BT_OK" xml:space="preserve">
     <value>Ok</value>
+  </data>
+  <data name="CB_ADD_CATEGORIES_IN_NAME" xml:space="preserve">
+    <value>Ajouter les catégories dans le nom de fichier</value>
   </data>
   <data name="CB_ASK_PATH_TOO_LONG" xml:space="preserve">
     <value>Demander un nom de fichier plus court lors de la détection de chemins trop long</value>
@@ -153,6 +159,9 @@
   <data name="FILE_ALREADY_EXISTS" xml:space="preserve">
     <value>Le fichier existe déjà</value>
   </data>
+  <data name="FORM_ARCHIVE_RENAME_TITLE" xml:space="preserve">
+    <value>Renommer &amp; Archiver</value>
+  </data>
   <data name="FORM_ARCHIVE_TO_DISK_TITLE" xml:space="preserve">
     <value>Archive2Disk</value>
   </data>
@@ -170,6 +179,9 @@
   </data>
   <data name="LABEL_NB_MAILS" xml:space="preserve">
     <value>Mail count:</value>
+  </data>
+  <data name="LABEL_RENAME" xml:space="preserve">
+    <value>Nouveau nom:</value>
   </data>
   <data name="LABEL_TREATED_MAILS" xml:space="preserve">
     <value>Mails archivés</value>

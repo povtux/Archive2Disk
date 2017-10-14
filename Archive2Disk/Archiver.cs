@@ -116,7 +116,7 @@ namespace Archive2Disk
                                 !mailitem.Categories.Contains(customCat))
                             {
                                 // archive items
-                                msg = ArchiveItem(mailitem, binding[key]);
+                                msg = ArchiveItem(mailitem, binding[key], null);
                                 // update categories if needed
                                 if (msg.Equals("Ok"))
                                 {
@@ -176,13 +176,22 @@ namespace Archive2Disk
 
         public string ArchiveItem(Outlook.MailItem item)
         {
-            return ArchiveItem(item, this.dir);
+            return ArchiveItem(item, this.dir, null);
         }
 
-        public string ArchiveItem(Outlook.MailItem item, string dir)
+        public string ArchiveItem(Outlook.MailItem item, string dir, string newname)
         {
             string archived = "erreur";
-            string shortFilename = String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-" + CleanFileName(item.Subject);
+            string shortFilename = String.Format("{0:yyyy-MM-dd_HHmmss}", item.ReceivedTime) + "-";
+            if(Config.GetInstance().GetOption("ADD_CATEGORIES_IN_FILENAME") == "TRUE")
+            {
+                if(item.Categories != null)
+                    shortFilename += item.Categories.Replace(';', '-') + "-";
+            }
+            if (newname != null)
+                shortFilename += CleanFileName(newname);
+            else
+                shortFilename += CleanFileName(item.Subject);
             string filename = Path.Combine(dir, shortFilename + ".msg");
 
             // si extraction dans dossier séparé, on redéfini le filename

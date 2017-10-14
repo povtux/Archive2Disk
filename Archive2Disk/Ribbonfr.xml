@@ -59,6 +59,10 @@
           label="Archiver le mail sur disque"
           onAction="OnMyButtonClick"
           getImage="GetImage"/>
+      <button id="Archive2DiskBtArchiveRenameClick"
+          label="Archiver et renommer le mail"
+          onAction="OnBtArchiveRenameClick"
+          getImage="GetImage"/>
     </contextMenu>
     <contextMenu idMso="ContextMenuMultipleItems">
       <button id="MyContextMenuMultipleItems"

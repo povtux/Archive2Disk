@@ -34,7 +34,7 @@
     <PublishUrl>ftp://apps.verschoore.fr/Archive2Disk/</PublishUrl>
     <InstallUrl>http://apps.verschoore.fr/Archive2Disk/</InstallUrl>
     <TargetCulture>fr</TargetCulture>
-    <ApplicationVersion>1.1.0.14</ApplicationVersion>
+    <ApplicationVersion>1.1.0.17</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>1</UpdateInterval>
@@ -191,6 +191,12 @@
     <Compile Include="ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormArchiveRename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArchiveRename.Designer.cs">
+      <DependentUpon>FormArchiveRename.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormArchiveToDisk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormArchiveRename.resx">
+      <DependentUpon>FormArchiveRename.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormArchiveToDisk.resx">
       <DependentUpon>FormArchiveToDisk.cs</DependentUpon>

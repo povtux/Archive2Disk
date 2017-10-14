@@ -54,8 +54,9 @@ namespace Archive2Disk
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cb_truncate = new System.Windows.Forms.CheckBox();
             this.cb_ask_path_too_long = new System.Windows.Forms.CheckBox();
+            this.cb_truncate = new System.Windows.Forms.CheckBox();
+            this.cb_add_categories_in_name = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -132,7 +133,7 @@ namespace Archive2Disk
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(16, 15);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(963, 446);
@@ -143,9 +144,9 @@ namespace Archive2Disk
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.lv_folders);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(955, 417);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TAB_FOLDERS";
@@ -153,28 +154,18 @@ namespace Archive2Disk
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cb_add_categories_in_name);
             this.tabPage2.Controls.Add(this.cb_ask_path_too_long);
             this.tabPage2.Controls.Add(this.cb_truncate);
             this.tabPage2.Controls.Add(this.cb_explode_attachments);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(955, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "TAB_PARAMS";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // cb_truncate
-            // 
-            this.cb_truncate.AutoSize = true;
-            this.cb_truncate.Location = new System.Drawing.Point(7, 33);
-            this.cb_truncate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cb_truncate.Name = "cb_truncate";
-            this.cb_truncate.Size = new System.Drawing.Size(263, 21);
-            this.cb_truncate.TabIndex = 4;
-            this.cb_truncate.Text = "CB_TRUNCATE_PATH_TOO_LONG";
-            this.cb_truncate.UseVisualStyleBackColor = true;
             // 
             // cb_ask_path_too_long
             // 
@@ -186,6 +177,27 @@ namespace Archive2Disk
             this.cb_ask_path_too_long.TabIndex = 5;
             this.cb_ask_path_too_long.Text = "CB_ASK_PATH_TOO_LONG";
             this.cb_ask_path_too_long.UseVisualStyleBackColor = true;
+            // 
+            // cb_truncate
+            // 
+            this.cb_truncate.AutoSize = true;
+            this.cb_truncate.Location = new System.Drawing.Point(7, 33);
+            this.cb_truncate.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_truncate.Name = "cb_truncate";
+            this.cb_truncate.Size = new System.Drawing.Size(263, 21);
+            this.cb_truncate.TabIndex = 4;
+            this.cb_truncate.Text = "CB_TRUNCATE_PATH_TOO_LONG";
+            this.cb_truncate.UseVisualStyleBackColor = true;
+            // 
+            // cb_add_categories_in_name
+            // 
+            this.cb_add_categories_in_name.AutoSize = true;
+            this.cb_add_categories_in_name.Location = new System.Drawing.Point(8, 91);
+            this.cb_add_categories_in_name.Name = "cb_add_categories_in_name";
+            this.cb_add_categories_in_name.Size = new System.Drawing.Size(250, 21);
+            this.cb_add_categories_in_name.TabIndex = 6;
+            this.cb_add_categories_in_name.Text = "CB_ADD_CATEGORIES_IN_NAME";
+            this.cb_add_categories_in_name.UseVisualStyleBackColor = true;
             // 
             // ConfigForm
             // 
@@ -219,5 +231,6 @@ namespace Archive2Disk
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox cb_truncate;
         private System.Windows.Forms.CheckBox cb_ask_path_too_long;
+        private System.Windows.Forms.CheckBox cb_add_categories_in_name;
     }
 }

@@ -72,6 +72,7 @@ namespace Archive2Disk
             if (Config.GetInstance().GetOption("EXPLODE_ATTACHMENTS").Equals("TRUE")) cb_explode_attachments.Checked = true;
             if (Config.GetInstance().GetOption("TRUNCATE_PATH_TOO_LONG").Equals("TRUE")) cb_truncate.Checked = true;
             if (Config.GetInstance().GetOption("ASK_PATH_TOO_LONG").Equals("TRUE")) cb_ask_path_too_long.Checked = true;
+            if (Config.GetInstance().GetOption("ADD_CATEGORIES_IN_FILENAME").Equals("TRUE")) cb_add_categories_in_name.Checked = true;
         }
 
         private void Bt_ok_Click(object sender, EventArgs e)
@@ -113,6 +114,7 @@ namespace Archive2Disk
             this.cb_ask_path_too_long.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_ask_path_too_long.Text);
             this.tabPage1.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage1.Text);
             this.tabPage2.Text = loc.getString(info.TwoLetterISOLanguageName, this.tabPage2.Text);
+            this.cb_add_categories_in_name.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_add_categories_in_name.Text);
         }
 
         private void SaveOptions()
@@ -123,6 +125,8 @@ namespace Archive2Disk
             else Config.GetInstance().AddOrUpdateOption("TRUNCATE_PATH_TOO_LONG", "FALSE");
             if (cb_ask_path_too_long.Checked) Config.GetInstance().AddOrUpdateOption("ASK_PATH_TOO_LONG", "TRUE");
             else Config.GetInstance().AddOrUpdateOption("ASK_PATH_TOO_LONG", "FALSE");
+            if (cb_add_categories_in_name.Checked) Config.GetInstance().AddOrUpdateOption("ADD_CATEGORIES_IN_FILENAME", "TRUE");
+            else Config.GetInstance().AddOrUpdateOption("ADD_CATEGORIES_IN_FILENAME", "FALSE");
 
             Config.GetInstance().SaveOptions();
         }
