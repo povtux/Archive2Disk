@@ -34,7 +34,7 @@
     <PublishUrl>ftp://apps.verschoore.fr/Archive2Disk/</PublishUrl>
     <InstallUrl>http://apps.verschoore.fr/Archive2Disk/</InstallUrl>
     <TargetCulture>fr</TargetCulture>
-    <ApplicationVersion>1.1.0.17</ApplicationVersion>
+    <ApplicationVersion>1.1.0.24</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>1</UpdateInterval>

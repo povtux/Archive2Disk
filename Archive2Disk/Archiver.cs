@@ -17,6 +17,7 @@
 
 using System;
 using System.IO;
+using System.Threading;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Archive2Disk
@@ -80,6 +81,7 @@ namespace Archive2Disk
 
                 parent.Invoke(parent.updateItemDelegate, new object[] { item.EntryID, msg });
                 cpt++;
+                Thread.Sleep(10);
             }
 
             parent.Invoke(parent.endArchiveDelegate);

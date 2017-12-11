@@ -198,6 +198,9 @@
   <data name="LIST_COLUMN_SUBJECT" xml:space="preserve">
     <value>Sujet</value>
   </data>
+  <data name="MESSAGE_ARE_YOU_SURE" xml:space="preserve">
+    <value>Etes vous certain de vouloir archiver en masse?</value>
+  </data>
   <data name="PATH_TOO_LONG" xml:space="preserve">
     <value>Nom de répertoire trop long</value>
   </data>

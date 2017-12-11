@@ -198,6 +198,9 @@
   <data name="LIST_COLUMN_SUBJECT" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="MESSAGE_ARE_YOU_SURE" xml:space="preserve">
+    <value>Are you sure ?</value>
+  </data>
   <data name="PATH_TOO_LONG" xml:space="preserve">
     <value>Path too long</value>
   </data>

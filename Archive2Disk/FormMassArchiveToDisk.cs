@@ -26,12 +26,14 @@ namespace Archive2Disk
     public partial class FormMassArchiveToDisk : ArchiverForm
     {
         private Archiver archiver;
+        private Thread t;
 
         public FormMassArchiveToDisk(ThisAddIn addin)
         {
             Activate(addin);
             InitializeComponent();
             UpdateLabelsWithLang(culture);
+
             this.archiver = new Archiver("", this);
 
             this.bt_close.Enabled = false;
@@ -40,7 +42,14 @@ namespace Archive2Disk
 
         public void ShowDlg()
         {
-            Thread t = new Thread(archiver.MassArchive);
+            if (MessageBox.Show(
+                Localisation.getInstance().getString(culture.TwoLetterISOLanguageName, "MESSAGE_ARE_YOU_SURE"),
+                Localisation.getInstance().getString(culture.TwoLetterISOLanguageName, "FORM_ARCHIVE_TO_DISK_TITLE"),
+                MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            {
+                return;
+            }
+            t = new Thread(archiver.MassArchive);
             t.Start();
 
             this.ShowDialog();
@@ -109,12 +118,16 @@ namespace Archive2Disk
 
         private void Bt_close_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            archiver.AskToStop();
+            t.Abort();
+            this.Hide();
         }
 
         private void Bt_cancel_Click(object sender, EventArgs e)
         {
             archiver.AskToStop();
+            t.Abort();
+            this.Terminate();
         }
     }
 }

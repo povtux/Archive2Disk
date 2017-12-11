@@ -117,6 +117,7 @@ namespace Archive2Disk
         {
             var massForm = new FormMassArchiveToDisk(addin);
             massForm.ShowDlg();
+            massForm.Dispose();
         }
 
         public void OnBtArchiveRenameClick(Office.IRibbonControl control)
