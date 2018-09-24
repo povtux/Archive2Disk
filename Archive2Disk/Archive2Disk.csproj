@@ -249,6 +249,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ressources\lang.de.resx" />
     <EmbeddedResource Include="Ressources\lang.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>lang.en.Designer.cs</LastGenOutput>
@@ -309,7 +310,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5D384C65565C6B5F85D484433080DD4A3E56760F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>D563B9B9B2DA9FB41AECF0E10428BDB6658B2F1A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>

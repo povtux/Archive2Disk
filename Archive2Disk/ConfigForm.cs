@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using XPTable.Models;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Archive2Disk
@@ -46,20 +47,19 @@ namespace Archive2Disk
             {
                 foreach (Outlook.Folder childFolder in childFolders)
                 {
-                    if(childFolder.DefaultItemType == Outlook.OlItemType.olMailItem)
+                    if (childFolder.DefaultItemType == Outlook.OlItemType.olMailItem)
                     {
                         if (Config.GetInstance().GetFoldersBinding().ContainsKey(childFolder.EntryID))
                             diskFolder = Config.GetInstance().GetFoldersBinding()[childFolder.EntryID];
                         else
                             diskFolder = "";
-                        var item = new ListViewItem(new string[] {
-                            prefix + childFolder.Name,
-                            diskFolder
-                        })
-                        {
-                            Name = childFolder.EntryID
-                        };
-                        lv_folders.Items.Add(item);
+
+                        var row = new Row();
+                        row.Cells.Add(new Cell(prefix + childFolder.Name));
+                        row.Cells.Add(new Cell(diskFolder));
+                        row.Cells.Add(new Cell("..."));
+                        row.Tag = childFolder.EntryID;
+                        tableModel1.Rows.Add(row);
                         // Call EnumerateFolders using childFolder.
                         EnumerateFolders(childFolder, "    " + prefix);
                     }
@@ -78,10 +78,10 @@ namespace Archive2Disk
         private void Bt_ok_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> newBinding = new Dictionary<string, string>();
-            foreach(ListViewItem item in lv_folders.Items)
+            foreach (Row item in tableModel1.Rows)
             {
-                if(!item.SubItems[1].Text.Equals(""))
-                    newBinding.Add(item.Name, item.SubItems[1].Text);
+                if (!item.Cells[1].Text.Equals(""))
+                    newBinding.Add((string)item.Tag, item.Cells[1].Text);
             }
             Config.GetInstance().UpdateFoldersBinding(newBinding);
 
@@ -106,8 +106,8 @@ namespace Archive2Disk
             Localisation loc = Localisation.getInstance();
             this.Text = loc.getString(info.TwoLetterISOLanguageName, this.Text);
             this.label1.Text = loc.getString(info.TwoLetterISOLanguageName, this.label1.Text);
-            this.columnHeader1.Text = loc.getString(info.TwoLetterISOLanguageName, this.columnHeader1.Text);
-            this.columnHeader2.Text = loc.getString(info.TwoLetterISOLanguageName, this.columnHeader2.Text);
+            this.textColumn1.Text = loc.getString(info.TwoLetterISOLanguageName, this.textColumn1.Text);
+            this.textColumn2.Text = loc.getString(info.TwoLetterISOLanguageName, this.textColumn2.Text);
             this.bt_ok.Text = loc.getString(info.TwoLetterISOLanguageName, this.bt_ok.Text);
             this.cb_explode_attachments.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_explode_attachments.Text);
             this.cb_truncate.Text = loc.getString(info.TwoLetterISOLanguageName, this.cb_truncate.Text);
@@ -129,6 +129,18 @@ namespace Archive2Disk
             else Config.GetInstance().AddOrUpdateOption("ADD_CATEGORIES_IN_FILENAME", "FALSE");
 
             Config.GetInstance().SaveOptions();
+        }
+
+        private void table1_CellButtonClicked(object sender, XPTable.Events.CellButtonEventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if(tableModel1.Rows[e.Row].Cells[1].Text.Trim().Length>0)
+                fbd.SelectedPath = tableModel1.Rows[e.Row].Cells[1].Text;
+            var result = fbd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                tableModel1.Rows[e.Row].Cells[1].Text = fbd.SelectedPath;
+            }
         }
     }
 }

@@ -45,53 +45,28 @@ namespace Archive2Disk
         /// </summary>
         private void InitializeComponent()
         {
-            this.lv_folders = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            XPTable.Models.DataSourceColumnBinder dataSourceColumnBinder1 = new XPTable.Models.DataSourceColumnBinder();
+            XPTable.Renderers.DragDropRenderer dragDropRenderer1 = new XPTable.Renderers.DragDropRenderer();
             this.label1 = new System.Windows.Forms.Label();
             this.bt_ok = new System.Windows.Forms.Button();
             this.cb_explode_attachments = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.table1 = new XPTable.Models.Table();
+            this.columnModel1 = new XPTable.Models.ColumnModel();
+            this.textColumn1 = new XPTable.Models.TextColumn();
+            this.textColumn2 = new XPTable.Models.TextColumn();
+            this.buttonColumn1 = new XPTable.Models.ButtonColumn();
+            this.tableModel1 = new XPTable.Models.TableModel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cb_add_categories_in_name = new System.Windows.Forms.CheckBox();
             this.cb_ask_path_too_long = new System.Windows.Forms.CheckBox();
             this.cb_truncate = new System.Windows.Forms.CheckBox();
-            this.cb_add_categories_in_name = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lv_folders
-            // 
-            this.lv_folders.Activation = System.Windows.Forms.ItemActivation.TwoClick;
-            this.lv_folders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lv_folders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.lv_folders.FullRowSelect = true;
-            this.lv_folders.GridLines = true;
-            this.lv_folders.Location = new System.Drawing.Point(11, 22);
-            this.lv_folders.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lv_folders.MultiSelect = false;
-            this.lv_folders.Name = "lv_folders";
-            this.lv_folders.Size = new System.Drawing.Size(933, 384);
-            this.lv_folders.TabIndex = 0;
-            this.lv_folders.UseCompatibleStateImageBehavior = false;
-            this.lv_folders.View = System.Windows.Forms.View.Details;
-            this.lv_folders.ItemActivate += new System.EventHandler(this.Lv_folders_ItemActivate);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "CONFIG_COLUMN_FOLDER_OUTLOOK";
-            this.columnHeader1.Width = 200;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "CONFIG_COLUMN_FOLDER_DISK";
-            this.columnHeader2.Width = 600;
             // 
             // label1
             // 
@@ -141,8 +116,8 @@ namespace Archive2Disk
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.table1);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.lv_folders);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
@@ -151,6 +126,59 @@ namespace Archive2Disk
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TAB_FOLDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // table1
+            // 
+            this.table1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.table1.BorderColor = System.Drawing.Color.Black;
+            this.table1.ColumnModel = this.columnModel1;
+            this.table1.DataMember = null;
+            this.table1.DataSourceColumnBinder = dataSourceColumnBinder1;
+            dragDropRenderer1.ForeColor = System.Drawing.Color.Red;
+            this.table1.DragDropRenderer = dragDropRenderer1;
+            this.table1.GridLinesContrainedToData = false;
+            this.table1.Location = new System.Drawing.Point(10, 37);
+            this.table1.Name = "table1";
+            this.table1.Size = new System.Drawing.Size(942, 373);
+            this.table1.TabIndex = 2;
+            this.table1.TableModel = this.tableModel1;
+            this.table1.Text = "table1";
+            this.table1.UnfocusedBorderColor = System.Drawing.Color.Black;
+            this.table1.CellButtonClicked += new XPTable.Events.CellButtonEventHandler(this.table1_CellButtonClicked);
+            // 
+            // columnModel1
+            // 
+            this.columnModel1.Columns.AddRange(new XPTable.Models.Column[] {
+            this.textColumn1,
+            this.textColumn2,
+            this.buttonColumn1});
+            // 
+            // textColumn1
+            // 
+            this.textColumn1.Editable = false;
+            this.textColumn1.IsTextTrimmed = false;
+            this.textColumn1.Text = "CONFIG_COLUMN_FOLDER_OUTLOOK";
+            this.textColumn1.Width = 250;
+            // 
+            // textColumn2
+            // 
+            this.textColumn2.IsTextTrimmed = false;
+            this.textColumn2.Text = "CONFIG_COLUMN_FOLDER_DISK";
+            this.textColumn2.Width = 650;
+            // 
+            // buttonColumn1
+            // 
+            this.buttonColumn1.AutoResizeMode = XPTable.Models.ColumnAutoResizeMode.Shrink;
+            this.buttonColumn1.FlatStyle = true;
+            this.buttonColumn1.IsTextTrimmed = false;
+            this.buttonColumn1.Resizable = false;
+            this.buttonColumn1.Width = 30;
+            // 
+            // tableModel1
+            // 
+            this.tableModel1.RowHeight = 20;
             // 
             // tabPage2
             // 
@@ -166,6 +194,16 @@ namespace Archive2Disk
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "TAB_PARAMS";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cb_add_categories_in_name
+            // 
+            this.cb_add_categories_in_name.AutoSize = true;
+            this.cb_add_categories_in_name.Location = new System.Drawing.Point(8, 91);
+            this.cb_add_categories_in_name.Name = "cb_add_categories_in_name";
+            this.cb_add_categories_in_name.Size = new System.Drawing.Size(250, 21);
+            this.cb_add_categories_in_name.TabIndex = 6;
+            this.cb_add_categories_in_name.Text = "CB_ADD_CATEGORIES_IN_NAME";
+            this.cb_add_categories_in_name.UseVisualStyleBackColor = true;
             // 
             // cb_ask_path_too_long
             // 
@@ -189,16 +227,6 @@ namespace Archive2Disk
             this.cb_truncate.Text = "CB_TRUNCATE_PATH_TOO_LONG";
             this.cb_truncate.UseVisualStyleBackColor = true;
             // 
-            // cb_add_categories_in_name
-            // 
-            this.cb_add_categories_in_name.AutoSize = true;
-            this.cb_add_categories_in_name.Location = new System.Drawing.Point(8, 91);
-            this.cb_add_categories_in_name.Name = "cb_add_categories_in_name";
-            this.cb_add_categories_in_name.Size = new System.Drawing.Size(250, 21);
-            this.cb_add_categories_in_name.TabIndex = 6;
-            this.cb_add_categories_in_name.Text = "CB_ADD_CATEGORIES_IN_NAME";
-            this.cb_add_categories_in_name.UseVisualStyleBackColor = true;
-            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -212,6 +240,7 @@ namespace Archive2Disk
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -219,10 +248,6 @@ namespace Archive2Disk
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView lv_folders;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bt_ok;
         private System.Windows.Forms.CheckBox cb_explode_attachments;
@@ -232,5 +257,11 @@ namespace Archive2Disk
         private System.Windows.Forms.CheckBox cb_truncate;
         private System.Windows.Forms.CheckBox cb_ask_path_too_long;
         private System.Windows.Forms.CheckBox cb_add_categories_in_name;
+        private XPTable.Models.Table table1;
+        private XPTable.Models.ColumnModel columnModel1;
+        private XPTable.Models.TableModel tableModel1;
+        private XPTable.Models.TextColumn textColumn1;
+        private XPTable.Models.TextColumn textColumn2;
+        private XPTable.Models.ButtonColumn buttonColumn1;
     }
 }
