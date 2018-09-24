@@ -34,7 +34,7 @@
     <PublishUrl>ftp://apps.verschoore.fr/Archive2Disk/</PublishUrl>
     <InstallUrl>http://apps.verschoore.fr/Archive2Disk/</InstallUrl>
     <TargetCulture>fr</TargetCulture>
-    <ApplicationVersion>1.1.0.24</ApplicationVersion>
+    <ApplicationVersion>1.1.0.31</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>1</UpdateInterval>
@@ -297,6 +297,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\xptable\XPTable.csproj">
+      <Project>{1add2ecb-2b24-4162-8965-3efaa9bb041e}</Project>
+      <Name>XPTable</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
